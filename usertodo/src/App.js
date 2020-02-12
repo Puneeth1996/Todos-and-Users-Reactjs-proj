@@ -7,44 +7,13 @@ const dataSource = [
     {
         key: '1',
         name: 'Mike',
-        email: 32,
+        email: 'Mike@gmail.com',
     },
     {
         key: '2',
         name: 'John',
-        email: 42,
+        email: 'John@gmail.com',
     },
-    {
-        key: '3',
-        name: 'Randle',
-        email: 32,
-    },
-    {
-        key: '4',
-        name: 'John',
-        email: 42,
-    },
-    {
-        key: '5',
-        name: 'John',
-        email: 32,
-    },
-    {
-        key: '6',
-        name: 'Meena',
-        email: 42,
-    },
-    {
-        key: '7',
-        name: 'Ram',
-        email: 32,
-    },
-    {
-        key: '8',
-        name: 'Ray',
-        email: 42,
-    },
-
 ];
 
 
