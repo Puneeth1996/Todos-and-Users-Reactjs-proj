@@ -17,26 +17,61 @@ const dataSource = [
 ];
 
 
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
-    },
-];
-
-
 
 export default class App extends Component {
 
     state = {
         current: 'Todos',
-		visible: false,
+        visible: false,
+        columnsUser: [
+            {
+                title: 'Name',
+                dataIndex: 'name',
+                key: 'name',
+            },
+            {
+                title: 'Email',
+                dataIndex: 'email',
+                key: 'email',
+            },
+        ],
+        dataSourceUser: [
+            {
+                key: '1',
+                name: 'Mike',
+                email: 'Mike@gmail.com',
+            },
+            {
+                key: '2',
+                name: 'John',
+                email: 'John@gmail.com',
+            },
+        ],
+        columnsTodo: [
+            {
+                title: 'Name',
+                dataIndex: 'name',
+                key: 'name',
+            },
+            {
+                title: 'Email',
+                dataIndex: 'email',
+                key: 'email',
+            },
+        ],
+        dataSourceTodo: [
+            {
+                key: '1',
+                name: 'Mike',
+                email: 'Mike@gmail.com',
+            },
+            {
+                key: '2',
+                name: 'John',
+                email: 'John@gmail.com',
+            },
+        ],
+        
     };
 
     handleClick = e => {
@@ -46,7 +81,7 @@ export default class App extends Component {
         });
     };
 	
-	  showModal = () => {
+    showModal = () => {
 		this.setState({
 			visible: true,
 		});
@@ -82,7 +117,7 @@ export default class App extends Component {
 				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
 				
-                <Table dataSource={dataSource} columns={columns} />
+                <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} />
 
                 <Modal title={"Insert New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<p>Some contents...</p>
