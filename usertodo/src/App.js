@@ -61,7 +61,7 @@ export default class App extends Component {
     };
 
     handleClick = e => {
-        console.log('click ', e);
+        // console.log('click ', e);
         this.setState({
             current: e.key,
         });
@@ -108,13 +108,14 @@ export default class App extends Component {
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 				</Modal>
-                {this.state.current === 'Todos' ? <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> : <Table dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />} 
-                {/* <Table dataSource={data} columns={colu} />
-                <Modal title={modelTitleStr} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
-				</Modal> */}
+                {   
+                    this.state.current === 'Todos' ?
+
+                    <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> :
+
+                    <Table dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />
+                } 
+
             </div>
         )
     }
