@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Table, Menu, Icon } from 'antd';
+import { Modal, Button, Table, Menu, Icon } from 'antd';
 import './App.css';
 
 
@@ -16,7 +16,7 @@ const dataSource = [
     },
     {
         key: '3',
-        name: 'Mike',
+        name: 'Randle',
         email: 32,
     },
     {
@@ -26,22 +26,22 @@ const dataSource = [
     },
     {
         key: '5',
-        name: 'Mike',
+        name: 'John',
         email: 32,
     },
     {
         key: '6',
-        name: 'John',
+        name: 'Meena',
         email: 42,
     },
     {
         key: '7',
-        name: 'Mike',
+        name: 'Ram',
         email: 32,
     },
     {
         key: '8',
-        name: 'John',
+        name: 'Ray',
         email: 42,
     },
 
@@ -66,7 +66,8 @@ const columns = [
 export default class App extends Component {
 
     state = {
-        current: 'mail',
+        current: 'Todos',
+		visible: false,
     };
 
     handleClick = e => {
@@ -75,21 +76,50 @@ export default class App extends Component {
             current: e.key,
         });
     };
+	
+	  showModal = () => {
+		this.setState({
+			visible: true,
+		});
+	};
+
+	handleOk = e => {
+		console.log(e);
+		this.setState({
+			visible: false,
+		});
+	};
+
+	handleCancel = e => {
+		console.log(e);
+		this.setState({
+			visible: false,
+		});
+	};
 
     render() {
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                    <Menu.Item key="mail">
-                        <Icon type="mail" />
+                    <Menu.Item key="Todos">
+                        <Icon type="Todos" />
                             Todos
                     </Menu.Item>
-                    <Menu.Item key="app">
-                        <Icon type="appstore" />
+                    <Menu.Item key="Users">
+                        <Icon type="Users" />
                         Users
                     </Menu.Item>
                 </Menu>
+				
+				<Button onClick={this.showModal}>Add {this.state.current}</Button>
+				
                 <Table dataSource={dataSource} columns={columns} />
+
+                <Modal title={"Insert New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+				</Modal>
             </div>
         )
     }
