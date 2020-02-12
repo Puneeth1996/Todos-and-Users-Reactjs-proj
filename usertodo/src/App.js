@@ -65,14 +65,7 @@ export default class App extends Component {
         this.setState({
             current: e.key,
         });
-        modelTitleStr = "Inset "+e.key;
-        if(e.key=='Todos'){
-            data = [...this.state.dataSourceTodo];
-            colu = [...this.state.columnsTodo];
-        }else {
-            data = [...this.state.dataSourceUsers];
-            colu = [...this.state.columnsUserdataSourceUsers];
-        }
+        
     };
 	
     showModal = () => {
@@ -96,8 +89,6 @@ export default class App extends Component {
 	};
 
     render() {
-        
-        console.log(data, colu)
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
@@ -112,14 +103,18 @@ export default class App extends Component {
                 </Menu>
 				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
-				
-                <Table dataSource={data} columns={colu} />
-
-                <Modal title={modelTitleStr} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 				</Modal>
+                {this.state.current === 'Todos' ? <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> : <Table dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />} 
+                {/* <Table dataSource={data} columns={colu} />
+                <Modal title={modelTitleStr} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+				</Modal> */}
             </div>
         )
     }
