@@ -5,43 +5,6 @@ import './App.css';
 
 
 
-const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
-  
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-
-
-
-
-
 export default class App extends Component {
 
     state = {
@@ -95,7 +58,6 @@ export default class App extends Component {
                 status: 'completed',
             },
         ],
-        
     };
 
     handleClick = e => {
@@ -103,6 +65,14 @@ export default class App extends Component {
         this.setState({
             current: e.key,
         });
+        modelTitleStr = "Inset "+e.key;
+        if(e.key=='Todos'){
+            data = [...this.state.dataSourceTodo];
+            colu = [...this.state.columnsTodo];
+        }else {
+            data = [...this.state.dataSourceUsers];
+            colu = [...this.state.columnsUserdataSourceUsers];
+        }
     };
 	
     showModal = () => {
@@ -126,17 +96,8 @@ export default class App extends Component {
 	};
 
     render() {
-        if(this.state.current=='Todos'){
-            const dataSource = this.state.dataSourceTodo;
-            const columnsSource = this.state.columnsSourceTodo;
-            const modelTitle="Insert New "+this.state.current
-        }else {
-            const dataSource = this.state.dataSourceUsers;
-            const columnsSource = this.state.columnsSourceUsers;
-            const modelTitle="Insert New "+this.state.current
-        }
-
-        console.log(this.state.columnsTodo)
+        
+        console.log(data, colu)
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
@@ -152,9 +113,9 @@ export default class App extends Component {
 				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
 				
-                <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} />
+                <Table dataSource={data} columns={colu} />
 
-                <Modal title={"Insert New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Modal title={modelTitleStr} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
