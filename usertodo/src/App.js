@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Table, Menu, Icon } from 'antd';
+import { Modal, Divider, Button, Table, Menu, Icon } from 'antd';
 import './App.css';
 
 
@@ -20,6 +20,17 @@ export default class App extends Component {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+            },
+            {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                    <span>
+                        <a>Edit {record.name}</a>
+                        <Divider type="vertical" />
+                        <a>Delete</a>
+                    </span>
+                ),
             },
         ],
         dataSourceUsers: [
@@ -44,6 +55,17 @@ export default class App extends Component {
                 title: 'Todo Status',
                 dataIndex: 'status',
                 key: 'status',
+            },
+            {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                    <span>
+                        <a>Edit {record.activity}</a>
+                        <Divider type="vertical" />
+                        <a>Delete</a>
+                    </span>
+                ),
             },
         ],
         dataSourceTodo: [            
@@ -120,3 +142,4 @@ export default class App extends Component {
         )
     }
 }
+
