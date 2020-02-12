@@ -1,4 +1,4 @@
-As discussed PFB the Assignment,
+
 Create a new ReactJS project using create-react-app cli
 Implement these packages
 Redux
@@ -14,7 +14,7 @@ email: string
 Fields for Todo
 action: string
 dateAdded: datetime
-The user clicks a “Create” button to bring up a modal window.  Upon clicking save in the modal window, the app will create a record of the resource and close the modal window. Note: No backend implementation is required.  The candidate only needs to maintain the data in the local storage.
+The user clicks a ï¿½Createï¿½ button to bring up a modal window.  Upon clicking save in the modal window, the app will create a record of the resource and close the modal window. Note: No backend implementation is required.  The candidate only needs to maintain the data in the local storage.
 Important criteria.
 When clicking the save button in the modal window, the button should display a loading indicator (refer to https://ant.design/components/button)
 Use this function to simulate a delay in saving
@@ -35,18 +35,11 @@ B. Functionality : Create / Update and delete TODOS.
 2. Assignment to be submitted in 2-3 working days.
 
   For any clarification please feel free to mail me or call me.
- 
-Regards,
-Dharani
-8150045921
+Dharani 8150045921
 
 
 
 
-On Tue, Feb 11, 2020 at 6:52 PM HR ASZ <HR@asztechnologies.com> wrote:
-Dear  Punith,
-
-PFB JD
 The team is responsible for the creation of a new user-friendly and highly scalable ticketing platform for the Asia entertainment market    
 As a Front end Developer, you are responsible for translating the UI/UX Design wire frames to working web application code. You will work closely in the team to refine ideas for the presentation and also with the Architect to create and maintainable and reusable framework for the front end projects.
 
@@ -87,16 +80,3 @@ Requirements
 9.       Customer experience-oriented and as a positive attitude for the teamwork.
 
 
-
-Company name : ASZ Technologies Pvt Ltd.(Evvo Group, Singapore)
-
-.              Location : CBI Road,Bengaluru.
-.              Working days : Monday to Friday
-.              Working Hours : 8 am to 4.30 pm
-.              Project : Book My Show - Singapore
-
- Regards,
-
-Dharani
-
-8150045921
