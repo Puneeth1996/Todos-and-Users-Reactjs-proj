@@ -2,22 +2,6 @@ import React, { Component } from 'react';
 import { Modal, Button, Table, Menu, Icon } from 'antd';
 import './App.css';
 
-
-const dataSource = [
-    {
-        key: '1',
-        name: 'Mike',
-        email: 'Mike@gmail.com',
-    },
-    {
-        key: '2',
-        name: 'John',
-        email: 'John@gmail.com',
-    },
-];
-
-
-
 export default class App extends Component {
 
     state = {
@@ -49,26 +33,26 @@ export default class App extends Component {
         ],
         columnsTodo: [
             {
-                title: 'Name',
-                dataIndex: 'name',
-                key: 'name',
+                title: 'Todo Title',
+                dataIndex: 'title',
+                key: 'title',
             },
             {
-                title: 'Email',
-                dataIndex: 'email',
-                key: 'email',
+                title: 'Todo Status',
+                dataIndex: 'status',
+                key: 'status',
             },
         ],
-        dataSourceTodo: [
+        dataSourceTodo: [            
             {
                 key: '1',
-                name: 'Mike',
-                email: 'Mike@gmail.com',
+                name: 'Should wash clothes',
+                email: 'pending',
             },
             {
                 key: '2',
-                name: 'John',
-                email: 'John@gmail.com',
+                name: 'Run For 5km in the morning',
+                email: 'completed',
             },
         ],
         
@@ -102,6 +86,19 @@ export default class App extends Component {
 	};
 
     render() {
+        const dataSource =[]
+        const columnsSource =[]
+        const modelTitle=''
+        console.log(this.state.current)
+        console.log(this.state.current=='Todos')
+        if(this.state.current=='Todos'){
+            const dataSource = this.state.dataSourceTodo.slice();
+            const columnsSource = this.state.columnsSourceTodo.slice();
+            const modelTitle="Insert New "+this.state.current
+        }
+
+        console.log(dataSource,columnsSource,modelTitle)
+
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
@@ -117,9 +114,9 @@ export default class App extends Component {
 				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
 				
-                <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} />
+                <Table dataSource={dataSource} columns={columnsSource} />
 
-                <Modal title={"Insert New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Modal title={modelTitle} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 					<p>Some contents...</p>
