@@ -88,37 +88,17 @@ export default class App extends Component {
 
 
     handleDelete1 = key => {
-        console.log('click handleDelete1');
         const dataSourceUsers = [...this.state.dataSourceUsers];
         this.setState({ dataSourceUsers: dataSourceUsers.filter(item => item.key !== key) });
     };
 
 
     handleDelete2 = key => {
-        console.log('click handleDelete2');
         const dataSourceTodo = [...this.state.dataSourceTodo];
         this.setState({ dataSourceTodo: dataSourceTodo.filter(item => item.key !== key) });
     };
 
-
-    // onItemClick = (key) => {
-    //     console.log('click onItemClick',key);
-    // };
-
-
-    // onRowClick = (record) => {
-    //     console.log('click onRowClick',record);
-    //     return {
-    //         onDoubleClick: () => {
-    //             // popup a promt;
-    //             alert('Clicking');
-    //         },
-    //     };
-    // };
-
-
     handleClick = e => {
-        console.log('click ', e);
         this.setState({
             current: e.key,
         });
@@ -132,28 +112,7 @@ export default class App extends Component {
 	};
 
 	handleOk = e => {
-        // Here we are going to check the this.state.current 
-        // this would helps us determine which is it 
-        // Todos     Or        Users
-        // Upon that we can update the datsource 
-        // dataSourceTodo     dataSourceUsers
-        // we can set the key to (length of the array + 1)
-        // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_length_array
-
-        console.log(e);
-        console.log(this.state.fieldVal1,this.state.fieldVal2);
         if(this.state.current === 'Todos'){
-            // update the datasource accordingly
-            // {
-            //     key: '2',
-            //     activity: 'Run For 5km in the morning',
-            //     status: 'completed',
-            // },
-            // {
-            //     key: ''+(this.state.dataSourceTodo.length+1),
-            //     activity: this.state.fieldVal1,
-            //     status: this.state.fieldVal2,
-            // },
             this.setState({
                 dataSourceTodo: [...this.state.dataSourceTodo,
                     {   key: ''+(this.state.dataSourceTodo.length+1),
@@ -170,8 +129,6 @@ export default class App extends Component {
                         status: this.state.fieldVal2,
                     }],
             });
-            // update the datasource accordingly
-
         }
 		this.setState({
             visible: false,
@@ -181,7 +138,6 @@ export default class App extends Component {
 	};
 
 	handleCancel = e => {
-		console.log(e);
 		this.setState({
             visible: false,
             fieldVal1: '',
@@ -191,15 +147,11 @@ export default class App extends Component {
 
 
     ChangeHandler1 = (event) => {
-        console.log(event.target.value);
-        console.log(event.target.name);
         this.setState({
             fieldVal1:event.target.value,
         });
     }
     ChangeHandler2 = (event) => {
-        console.log(event.target.value);
-        console.log(event.target.name);
         this.setState({
             fieldVal2:event.target.value,
         });
@@ -207,7 +159,6 @@ export default class App extends Component {
 
 
     render() {
-        console.log(this.state.fieldVal1,this.state.fieldVal2);
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
