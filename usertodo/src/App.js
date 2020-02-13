@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Divider, Button, Table, Menu, Icon } from 'antd';
+import {  Popconfirm, Modal, Divider, Button, Table, Menu, Icon } from 'antd';
 import './App.css';
 
 
@@ -24,13 +24,12 @@ export default class App extends Component {
             {
                 title: 'Action',
                 key: 'action',
-                render: (text, record) => (
-                    <span>
-                        <a>Edit {record.name}</a>
-                        <Divider type="vertical" />
-                        <a>Delete</a>
-                    </span>
-                ),
+                render: (text, record) =>
+                    this.state.dataSourceUsers.length >= 1 ? (
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
+                            <a>Delete</a>
+                        </Popconfirm>
+                    ) : null,
             },
         ],
         dataSourceUsers: [
@@ -60,38 +59,38 @@ export default class App extends Component {
                 title: 'Action',
                 dataIndex: 'action',
                 key: 'action',
-                render: (props) => {
-                    return(
-                        <>
-                            <span>
-                                <a>Edit</a>
-                                <Divider type="vertical" />
-                                <a onClick={() => this.save(form, record.id)}>Delete</a>
-                            </span>
-                        </>
-                    )
-                },
+                render: (text, record) =>
+                    this.state.dataSourceTodo.length >= 1 ? (
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
+                            <a>Delete</a>
+                        </Popconfirm>
+                    ) : null,
             },
         ],
         dataSourceTodo: [            
             {
-                key: '3',
+                key: '1',
                 activity: 'Should wash clothes',
                 status: 'pending',
             },
             {
-                key: '4',
+                key: '2',
                 activity: 'Run For 5km in the morning',
                 status: 'completed',
             },
         ],
     };
 
+    handleDelete2 = key => {
+        const dataSourceUsers = [...this.state.dataSourceUsers];
+        this.setState({ dataSourceUsers: dataSourceUsers.filter(item => item.key !== key) });
+    };
 
 
-    save(form, id) {
-        console.log('key', id)
-    }
+    handleDelete1 = key => {
+        const dataSourceTodo = [...this.state.dataSourceTodo];
+        this.setState({ dataSourceTodo: dataSourceTodo.filter(item => item.key !== key) });
+    };
 
     // onItemClick = (key) => {
     //     console.log('click onItemClick',key);
@@ -172,9 +171,9 @@ export default class App extends Component {
                 {   
                     this.state.current === 'Todos' ?
 
-                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> :
+                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered /> :
 
-                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />
+                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered />
                 } 
 
             </div>
