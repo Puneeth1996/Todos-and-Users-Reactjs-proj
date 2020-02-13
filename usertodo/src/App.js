@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {  Popconfirm, Modal, Divider, Button, Table, Menu, Icon } from 'antd';
 import './App.css';
 
-
-
-
 export default class App extends Component {
 
     state = {
@@ -26,9 +23,12 @@ export default class App extends Component {
                 key: 'action',
                 render: (text, record) =>
                     this.state.dataSourceUsers.length >= 1 ? (
+                        <>
                         <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
                             <a>Delete</a>
                         </Popconfirm>
+                        <Divider type="vertical" />
+                        </>
                     ) : null,
             },
         ],
@@ -61,9 +61,12 @@ export default class App extends Component {
                 key: 'action',
                 render: (text, record) =>
                     this.state.dataSourceTodo.length >= 1 ? (
+                        <>
                         <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
                             <a>Delete</a>
                         </Popconfirm>
+                        <Divider type="vertical" />
+                        </>
                     ) : null,
             },
         ],
@@ -115,7 +118,7 @@ export default class App extends Component {
         });
         
     };
-	
+
     showModal = () => {
 		this.setState({
 			visible: true,
@@ -149,7 +152,6 @@ export default class App extends Component {
                         Users
                     </Menu.Item>
                 </Menu>
-				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
 				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
                     {   
@@ -166,16 +168,12 @@ export default class App extends Component {
                         <input type='text' placeholder="USERS EMAIL FIELD" />
                         </>
                     }
-
 				</Modal>
                 {   
                     this.state.current === 'Todos' ?
-
                     <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered /> :
-
                     <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered />
-                } 
-
+                }
             </div>
         )
     }
