@@ -10,3 +10,53 @@ https://alligator.io/react/beautiful-uis-ant-design/
 
 
 onPressEnter is super useful method
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Feb 13 2020
+10.45 am 
+
+
+
+For Delete and Adding new row
+https://ant.design/components/table/#components-table-demo-edit-cell
+
+	You can look into the add a row functionality 
+
+	You can use the delete operation to the project 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For editable cells 
+https://ant.design/components/table/#components-table-demo-edit-row
