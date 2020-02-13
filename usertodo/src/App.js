@@ -62,7 +62,7 @@ export default class App extends Component {
                 render: (text, record) =>
                     this.state.dataSourceTodo.length >= 1 ? (
                         <>
-                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
+                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
                             <a>Delete</a>
                         </Popconfirm>
                         <Divider type="vertical" />
@@ -84,16 +84,20 @@ export default class App extends Component {
         ],
     };
 
-    handleDelete2 = key => {
+
+    handleDelete1 = key => {
+        console.log('click handleDelete1');
         const dataSourceUsers = [...this.state.dataSourceUsers];
         this.setState({ dataSourceUsers: dataSourceUsers.filter(item => item.key !== key) });
     };
 
 
-    handleDelete1 = key => {
+    handleDelete2 = key => {
+        console.log('click handleDelete2');
         const dataSourceTodo = [...this.state.dataSourceTodo];
         this.setState({ dataSourceTodo: dataSourceTodo.filter(item => item.key !== key) });
     };
+
 
     // onItemClick = (key) => {
     //     console.log('click onItemClick',key);
@@ -112,7 +116,7 @@ export default class App extends Component {
 
 
     handleClick = e => {
-        // console.log('click ', e);
+        console.log('click ', e);
         this.setState({
             current: e.key,
         });
