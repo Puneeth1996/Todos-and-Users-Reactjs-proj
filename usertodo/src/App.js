@@ -122,11 +122,12 @@ export default class App extends Component {
             });
         }
         else if(this.state.current === 'Users'){
+            console.log({key: ''+(this.state.dataSourceUsers.length+1),activity: this.state.fieldVal1,status: this.state.fieldVal2,});
             this.setState({
                 dataSourceUsers: [...this.state.dataSourceUsers,
                     {   key: ''+(this.state.dataSourceUsers.length+1),
-                        activity: this.state.fieldVal1,
-                        status: this.state.fieldVal2,
+                        name: this.state.fieldVal1,
+                        email: this.state.fieldVal2,
                     }],
             });
         }
