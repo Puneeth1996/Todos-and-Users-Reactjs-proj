@@ -130,6 +130,14 @@ export default class App extends Component {
 	};
 
 	handleOk = e => {
+        // Here we are going to check the this.state.current 
+        // this would helps us determine which is it 
+        // Todos     Or        Users
+        // Upon that we can update the datsource 
+        // dataSourceTodo     dataSourceUsers
+        // we can set the key to (length of the array + 1)
+        // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_length_array
+
 		console.log(e);
 		this.setState({
 			visible: false,
@@ -143,7 +151,14 @@ export default class App extends Component {
 		});
 	};
 
+
+    activityChangeHandler = (event) => {
+        console.log(event.target.value);
+    }
+
+
     render() {
+        console.log(this.activity)
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
@@ -170,10 +185,9 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             style={{ marginBottom: 16 }}
+                            name="activity"
+                            onChange={this.ChangeHandler}
                         />
-
-
-
                         <Input
                             placeholder="Enter your Activity status"
                             prefix={<Icon type="star" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -182,6 +196,8 @@ export default class App extends Component {
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            name="status"
+                            onChange={this.ChangeHandler}
                         />
                         </>
                         :
@@ -195,12 +211,9 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             style={{ marginBottom: 16 }}
+                            name="username"
+                            onChange={this.ChangeHandler}
                         />
-
-
-
-
-
                         <Input
                             placeholder="Enter your Email"
                             prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -209,15 +222,19 @@ export default class App extends Component {
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            name="email"
+                            onChange={this.ChangeHandler}
                         />
                         </>
                     }
-				</Modal>
+                </Modal>
+
                 {   
                     this.state.current === 'Todos' ?
                     <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered /> :
                     <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered />
                 }
+
             </div>
         )
     }
