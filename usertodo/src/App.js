@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Popconfirm, Modal, Divider, Button, Table, Menu, Icon } from 'antd';
+import {  Input, Tooltip, Icon, Popconfirm, Modal, Divider, Button, Table, Menu, } from 'antd';
 import './App.css';
 
 export default class App extends Component {
@@ -161,15 +161,45 @@ export default class App extends Component {
                     {   
                         this.state.current === 'Todos' ?
                         <>
-                        <input type='text' placeholder="TODO ACTIVITY FIELD" />
-                        <br/><br/><hr/><br/>
-                        <input type='text' placeholder="TODO STATUS FIELD" />
+                        <Input
+                            placeholder="Enter your Activity"
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            suffix={
+                                <Tooltip title="Add Your Activity">
+                                    <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }
+                        />
+                        <Input
+                            placeholder="Enter your Activity status"
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            suffix={
+                                <Tooltip title="Add Your Activity status">
+                                    <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }
+                        />
                         </>
                         :
                         <>
-                        <input type='text' placeholder="USERS NAME FIELD" />
-                        <br/><hr/><br/><br/>
-                        <input type='text' placeholder="USERS EMAIL FIELD" />
+                        <Input
+                            placeholder="Enter your username"
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            suffix={
+                                <Tooltip title="Add Your Username">
+                                    <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }
+                        />
+                        <Input
+                            placeholder="Enter your Email"
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            suffix={
+                                <Tooltip title="Add Your Email">
+                                    <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }
+                        />
                         </>
                     }
 				</Modal>
