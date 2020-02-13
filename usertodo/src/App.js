@@ -150,14 +150,26 @@ export default class App extends Component {
             //     status: 'completed',
             // },
             // {
-            //     key: ''+this.state.dataSourceTodo.length,
+            //     key: ''+(this.state.dataSourceTodo.length+1),
             //     activity: this.state.fieldVal1,
             //     status: this.state.fieldVal2,
             // },
-            this.state.dataSourceTodo.
+            this.setState({
+                dataSourceTodo: [...this.state.dataSourceTodo,
+                    {   key: ''+(this.state.dataSourceTodo.length+1),
+                        activity: this.state.fieldVal1,
+                        status: this.state.fieldVal2,
+                    }],
+            });
         }
         elseif(this.state.current === 'Users'){
-            
+            this.setState({
+                dataSourceUsers: [...this.state.dataSourceUsers,
+                    {   key: ''+(this.state.dataSourceUsers.length+1),
+                        activity: this.state.fieldVal1,
+                        status: this.state.fieldVal2,
+                    }],
+            });
             // update the datasource accordingly
 
         }
