@@ -66,7 +66,7 @@ export default class App extends Component {
                             <span>
                                 <a>Edit</a>
                                 <Divider type="vertical" />
-                                <a onClick={() => {console.log(props)}}>Delete</a>
+                                <a onClick={() => this.save(form, record.id)}>Delete</a>
                             </span>
                         </>
                     )
@@ -89,9 +89,13 @@ export default class App extends Component {
 
 
 
-    onItemClick = (key) => {
-        console.log('click onItemClick',key);
-    };
+    save(form, id) {
+        console.log('key', id)
+    }
+
+    // onItemClick = (key) => {
+    //     console.log('click onItemClick',key);
+    // };
 
 
     // onRowClick = (record) => {
@@ -168,9 +172,9 @@ export default class App extends Component {
                 {   
                     this.state.current === 'Todos' ?
 
-                    <Table dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> :
+                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} /> :
 
-                    <Table dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />
+                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} />
                 } 
 
             </div>
