@@ -142,6 +142,25 @@ export default class App extends Component {
 
         console.log(e);
         console.log(this.state.fieldVal1,this.state.fieldVal2);
+        if(this.state.current === 'Todos'){
+            // update the datasource accordingly
+            // {
+            //     key: '2',
+            //     activity: 'Run For 5km in the morning',
+            //     status: 'completed',
+            // },
+            // {
+            //     key: ''+this.state.dataSourceTodo.length,
+            //     activity: this.state.fieldVal1,
+            //     status: this.state.fieldVal2,
+            // },
+            this.state.dataSourceTodo.
+        }
+        elseif(this.state.current === 'Users'){
+            
+            // update the datasource accordingly
+
+        }
 		this.setState({
             visible: false,
             fieldVal1: '',
