@@ -58,29 +58,52 @@ export default class App extends Component {
             },
             {
                 title: 'Action',
+                dataIndex: 'action',
                 key: 'action',
-                render: (text, record) => (
-                    <span>
-                        <a>Edit {record.activity}</a>
-                        <Divider type="vertical" />
-                        <a>Delete</a>
-                    </span>
-                ),
+                render: (props) => {
+                    return(
+                        <>
+                            <span>
+                                <a>Edit</a>
+                                <Divider type="vertical" />
+                                <a onClick={() => {console.log(props)}}>Delete</a>
+                            </span>
+                        </>
+                    )
+                },
             },
         ],
         dataSourceTodo: [            
             {
-                key: '1',
+                key: '3',
                 activity: 'Should wash clothes',
                 status: 'pending',
             },
             {
-                key: '2',
+                key: '4',
                 activity: 'Run For 5km in the morning',
                 status: 'completed',
             },
         ],
     };
+
+
+
+    onItemClick = (key) => {
+        console.log('click onItemClick',key);
+    };
+
+
+    // onRowClick = (record) => {
+    //     console.log('click onRowClick',record);
+    //     return {
+    //         onDoubleClick: () => {
+    //             // popup a promt;
+    //             alert('Clicking');
+    //         },
+    //     };
+    // };
+
 
     handleClick = e => {
         // console.log('click ', e);
@@ -126,9 +149,21 @@ export default class App extends Component {
 				
 				<Button onClick={this.showModal}>Add {this.state.current}</Button>
 				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
+                    {   
+                        this.state.current === 'Todos' ?
+                        <>
+                        <input type='text' placeholder="TODO ACTIVITY FIELD" />
+                        <br/><br/><hr/><br/>
+                        <input type='text' placeholder="TODO STATUS FIELD" />
+                        </>
+                        :
+                        <>
+                        <input type='text' placeholder="USERS NAME FIELD" />
+                        <br/><hr/><br/><br/>
+                        <input type='text' placeholder="USERS EMAIL FIELD" />
+                        </>
+                    }
+
 				</Modal>
                 {   
                     this.state.current === 'Todos' ?
