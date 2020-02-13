@@ -163,16 +163,20 @@ export default class App extends Component {
                         <>
                         <Input
                             placeholder="Enter your Activity"
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="interaction" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             suffix={
                                 <Tooltip title="Add Your Activity">
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            style={{ marginBottom: 16 }}
                         />
+
+
+
                         <Input
                             placeholder="Enter your Activity status"
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="star" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             suffix={
                                 <Tooltip title="Add Your Activity status">
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
@@ -190,10 +194,16 @@ export default class App extends Component {
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            style={{ marginBottom: 16 }}
                         />
+
+
+
+
+
                         <Input
                             placeholder="Enter your Email"
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             suffix={
                                 <Tooltip title="Add Your Email">
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />

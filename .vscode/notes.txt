@@ -66,6 +66,12 @@ https://ant.design/components/table/#components-table-demo-edit-row
 
 
 
+
+
+
+
+
+
 2.20pm, 13/2/2020
 
 The delete functionality is done 
