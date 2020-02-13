@@ -156,7 +156,7 @@ export default class App extends Component {
                         Users
                     </Menu.Item>
                 </Menu>
-				<Button onClick={this.showModal}>Add {this.state.current}</Button>
+				<Button onClick={this.showModal} style={{ marginBottom: 16, marginTop: 16 }} >Add {this.state.current}</Button>
 				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
                     {   
                         this.state.current === 'Todos' ?
