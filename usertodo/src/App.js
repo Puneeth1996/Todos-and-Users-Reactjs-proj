@@ -141,7 +141,7 @@ export default class App extends Component {
         // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_length_array
 
         console.log(e);
-        console.log(this.state.fieldVal1,this.state.fieldVal2)
+        console.log(this.state.fieldVal1,this.state.fieldVal2);
 		this.setState({
             visible: false,
             fieldVal1: '',
@@ -176,7 +176,7 @@ export default class App extends Component {
 
 
     render() {
-        console.log(this.activity)
+        console.log(this.state.fieldVal1,this.state.fieldVal2);
         return (
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
@@ -203,6 +203,7 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             style={{ marginBottom: 16 }}
+                            value={this.state.fieldVal1} 
                             name="activity"
                             onChange={this.ChangeHandler1}
                         />
@@ -214,6 +215,7 @@ export default class App extends Component {
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            value={this.state.fieldVal2} 
                             name="status"
                             onChange={this.ChangeHandler2}
                         />
@@ -229,6 +231,7 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             style={{ marginBottom: 16 }}
+                            value={this.state.fieldVal1} 
                             name="username"
                             onChange={this.ChangeHandler1}
                         />
@@ -240,6 +243,7 @@ export default class App extends Component {
                                     <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
                                 </Tooltip>
                             }
+                            value={this.state.fieldVal2} 
                             name="email"
                             onChange={this.ChangeHandler2}
                         />
