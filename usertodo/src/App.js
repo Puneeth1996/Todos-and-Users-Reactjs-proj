@@ -82,6 +82,8 @@ export default class App extends Component {
                 status: 'completed',
             },
         ],
+        fieldVal1: '',
+        fieldVal2: '',
     };
 
 
@@ -138,22 +140,38 @@ export default class App extends Component {
         // we can set the key to (length of the array + 1)
         // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_length_array
 
-		console.log(e);
+        console.log(e);
+        console.log(this.state.fieldVal1,this.state.fieldVal2)
 		this.setState({
-			visible: false,
+            visible: false,
+            fieldVal1: '',
+            fieldVal2: '',
 		});
 	};
 
 	handleCancel = e => {
 		console.log(e);
 		this.setState({
-			visible: false,
+            visible: false,
+            fieldVal1: '',
+            fieldVal2: '',
 		});
 	};
 
 
-    activityChangeHandler = (event) => {
+    ChangeHandler1 = (event) => {
         console.log(event.target.value);
+        console.log(event.target.name);
+        this.setState({
+            fieldVal1:event.target.value,
+        });
+    }
+    ChangeHandler2 = (event) => {
+        console.log(event.target.value);
+        console.log(event.target.name);
+        this.setState({
+            fieldVal2:event.target.value,
+        });
     }
 
 
@@ -186,7 +204,7 @@ export default class App extends Component {
                             }
                             style={{ marginBottom: 16 }}
                             name="activity"
-                            onChange={this.ChangeHandler}
+                            onChange={this.ChangeHandler1}
                         />
                         <Input
                             placeholder="Enter your Activity status"
@@ -197,7 +215,7 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             name="status"
-                            onChange={this.ChangeHandler}
+                            onChange={this.ChangeHandler2}
                         />
                         </>
                         :
@@ -212,7 +230,7 @@ export default class App extends Component {
                             }
                             style={{ marginBottom: 16 }}
                             name="username"
-                            onChange={this.ChangeHandler}
+                            onChange={this.ChangeHandler1}
                         />
                         <Input
                             placeholder="Enter your Email"
@@ -223,7 +241,7 @@ export default class App extends Component {
                                 </Tooltip>
                             }
                             name="email"
-                            onChange={this.ChangeHandler}
+                            onChange={this.ChangeHandler2}
                         />
                         </>
                     }
