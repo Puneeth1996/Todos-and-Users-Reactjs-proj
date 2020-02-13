@@ -1,10 +1,74 @@
 import React, { Component } from 'react';
-import {  Input, Tooltip, Icon, Popconfirm, Modal, Divider, Button, Table, Menu, } from 'antd';
+import {  Input, Tooltip, Icon, Popconfirm, Modal, Divider, Button, Table, Menu, InputNumber, Form } from 'antd';
 import './App.css';
 
-export default class App extends Component {
 
-    state = {
+const data = [];
+for (let i = 0; i < 100; i++) {
+  data.push({
+    key: i.toString(),
+    name: `Edrward ${i}`,
+    age: 32,
+    address: `London Park no. ${i}`,
+  });
+}
+const EditableContext = React.createContext();
+
+class EditableCell extends React.Component {
+  getInput = () => {
+    if (this.props.inputType === 'number') {
+      return <InputNumber />;
+    }
+    return <Input />;
+  };
+
+  renderCell = ({ getFieldDecorator }) => {
+    const {
+      editing,
+      dataIndex,
+      title,
+      inputType,
+      record,
+      index,
+      children,
+      ...restProps
+    } = this.props;
+    return (
+      <td {...restProps}>
+        {editing ? (
+          <Form.Item style={{ margin: 0 }}>
+            {getFieldDecorator(dataIndex, {
+              rules: [
+                {
+                  required: true,
+                  message: `Please Input ${title}!`,
+                },
+              ],
+              initialValue: record[dataIndex],
+            })(this.getInput())}
+          </Form.Item>
+        ) : (
+          children
+        )}
+      </td>
+    );
+  };
+
+  render() {
+    return <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>;
+  }
+}
+
+
+
+
+
+class EditableTable  extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+        data,
+        editingKey: '',
         current: 'Todos',
         visible: false,
         columnsUsers: [
@@ -28,6 +92,27 @@ export default class App extends Component {
                             <a>Delete</a>
                         </Popconfirm>
                         <Divider type="vertical" />
+                        {editable} ? (
+                          <span>
+                            <EditableContext.Consumer>
+                              {form => (
+                                <a
+                                  onClick={() => this.save(form, record.key)}
+                                  style={{ marginRight: 8 }}
+                                >
+                                  Save
+                                </a>
+                              )}
+                            </EditableContext.Consumer>
+                            <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                              <a>Cancel</a>
+                            </Popconfirm>
+                          </span>
+                        ) : (
+                          <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+                            Edit
+                          </a>
+                        )
                         </>
                     ) : null,
             },
@@ -66,6 +151,27 @@ export default class App extends Component {
                             <a>Delete</a>
                         </Popconfirm>
                         <Divider type="vertical" />
+                        {editable} ? (
+                          <span>
+                            <EditableContext.Consumer>
+                              {form => (
+                                <a
+                                  onClick={() => this.save(form, record.key)}
+                                  style={{ marginRight: 8 }}
+                                >
+                                  Save
+                                </a>
+                              )}
+                            </EditableContext.Consumer>
+                            <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                              <a>Cancel</a>
+                            </Popconfirm>
+                          </span>
+                        ) : (
+                          <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+                            Edit
+                          </a>
+                        )
                         </>
                     ) : null,
             },
@@ -85,6 +191,7 @@ export default class App extends Component {
         fieldVal1: '',
         fieldVal2: '',
     };
+  }
 
 
     handleDelete1 = key => {
@@ -109,42 +216,42 @@ export default class App extends Component {
 		this.setState({
 			visible: true,
 		});
-	};
+    };
 
-	handleOk = e => {
-        if(this.state.current === 'Todos'){
-            this.setState({
-                dataSourceTodo: [...this.state.dataSourceTodo,
-                    {   key: ''+(this.state.dataSourceTodo.length+1),
-                        activity: this.state.fieldVal1,
-                        status: this.state.fieldVal2,
-                    }],
-            });
-        }
-        else if(this.state.current === 'Users'){
-            console.log({key: ''+(this.state.dataSourceUsers.length+1),activity: this.state.fieldVal1,status: this.state.fieldVal2,});
-            this.setState({
-                dataSourceUsers: [...this.state.dataSourceUsers,
-                    {   key: ''+(this.state.dataSourceUsers.length+1),
-                        name: this.state.fieldVal1,
-                        email: this.state.fieldVal2,
-                    }],
-            });
-        }
-		this.setState({
-            visible: false,
-            fieldVal1: '',
-            fieldVal2: '',
-		});
-	};
+    handleOk = e => {
+          if(this.state.current === 'Todos'){
+              this.setState({
+                  dataSourceTodo: [...this.state.dataSourceTodo,
+                      {   key: ''+(this.state.dataSourceTodo.length+1),
+                          activity: this.state.fieldVal1,
+                          status: this.state.fieldVal2,
+                      }],
+              });
+          }
+          else if(this.state.current === 'Users'){
+              console.log({key: ''+(this.state.dataSourceUsers.length+1),activity: this.state.fieldVal1,status: this.state.fieldVal2,});
+              this.setState({
+                  dataSourceUsers: [...this.state.dataSourceUsers,
+                      {   key: ''+(this.state.dataSourceUsers.length+1),
+                          name: this.state.fieldVal1,
+                          email: this.state.fieldVal2,
+                      }],
+              });
+          }
+      this.setState({
+              visible: false,
+              fieldVal1: '',
+              fieldVal2: '',
+      });
+    };
 
-	handleCancel = e => {
-		this.setState({
-            visible: false,
-            fieldVal1: '',
-            fieldVal2: '',
-		});
-	};
+    handleCancel = e => {
+      this.setState({
+              visible: false,
+              fieldVal1: '',
+              fieldVal2: '',
+      });
+    };
 
 
     ChangeHandler1 = (event) => {
@@ -159,8 +266,64 @@ export default class App extends Component {
     }
 
 
+    isEditing = record => record.key === this.state.editingKey;
+
+    cancel = () => {
+      this.setState({ editingKey: '' });
+    };
+  
+    save =(form, key) => {
+      form.validateFields((error, row) => {
+        if (error) {
+          return;
+        }
+        const newData = [...this.state.data];
+        const index = newData.findIndex(item => key === item.key);
+        if (index > -1) {
+          const item = newData[index];
+          newData.splice(index, 1, {
+            ...item,
+            ...row,
+          });
+          this.setState({ data: newData, editingKey: '' });
+        } else {
+          newData.push(row);
+          this.setState({ data: newData, editingKey: '' });
+        }
+      });
+    }
+  
+    edit = (key) => {
+      this.setState({ editingKey: key });
+    }
+
+    
     render() {
+      const components = {
+        body: {
+          cell: EditableCell,
+        },
+      };
+  
+      const columns = this.columns.map(col => {
+        if (!col.editable) {
+          return col;
+        }
+        return {
+          ...col,
+          onCell: record => ({
+            record,
+            inputType: col.dataIndex === 'age' ? 'number' : 'text',
+            dataIndex: col.dataIndex,
+            title: col.title,
+            editing: this.isEditing(record),
+          }),
+        };
+      });
+  
         return (
+          
+            <EditableContext.Provider value={this.props.form}>
             <div className="App">
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                     <Menu.Item key="Todos">
@@ -172,8 +335,8 @@ export default class App extends Component {
                         Users
                     </Menu.Item>
                 </Menu>
-				<Button onClick={this.showModal} style={{ marginBottom: 16, marginTop: 16 }} >Add {this.state.current}</Button>
-				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Button onClick={this.showModal} style={{ marginBottom: 16, marginTop: 16 }} >Add {this.state.current}</Button>
+                <Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
                     {   
                         this.state.current === 'Todos' ?
                         <>
@@ -236,12 +399,21 @@ export default class App extends Component {
 
                 {   
                     this.state.current === 'Todos' ?
-                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered /> :
-                    <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered />
+
+                      <Table rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered />
+                      
+                      :
+                      
+                      <Table rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered />
                 }
 
             </div>
+            </EditableContext.Provider>
         )
     }
 }
 
+const EditableFormTable = Form.create()(EditableTable );
+
+
+export default EditableFormTable;
