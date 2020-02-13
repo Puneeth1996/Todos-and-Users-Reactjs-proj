@@ -60,3 +60,17 @@ https://ant.design/components/table/#components-table-demo-edit-cell
 
 For editable cells 
 https://ant.design/components/table/#components-table-demo-edit-row
+
+
+
+
+
+
+2.20pm, 13/2/2020
+
+The delete functionality is done 
+
+
+
+Should start working on the add new row field from the antdesign example 
+https://ant.design/components/table/#components-table-demo-edit-cell
