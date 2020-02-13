@@ -79,4 +79,5 @@ The delete functionality is done
 
 
 Should start working on the add new row field from the antdesign example 
+
 https://ant.design/components/table/#components-table-demo-edit-cell
