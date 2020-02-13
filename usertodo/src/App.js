@@ -162,7 +162,7 @@ export default class App extends Component {
                     }],
             });
         }
-        elseif(this.state.current === 'Users'){
+        else if(this.state.current === 'Users'){
             this.setState({
                 dataSourceUsers: [...this.state.dataSourceUsers,
                     {   key: ''+(this.state.dataSourceUsers.length+1),
