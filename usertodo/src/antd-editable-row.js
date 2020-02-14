@@ -185,8 +185,3 @@ class EditableTable extends React.Component {
 const EditableFormTable = Form.create()(EditableTable);
 
 ReactDOM.render(<EditableFormTable />, mountNode);
-.editable-row .ant-form-explain {
-  position: absolute;
-  font-size: 12px;
-  margin-top: -4px;
-}

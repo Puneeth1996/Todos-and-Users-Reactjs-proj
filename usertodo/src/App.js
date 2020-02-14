@@ -1,10 +1,80 @@
 import React, { Component } from 'react';
-import {  Input, Tooltip, Icon, Popconfirm, Modal, Divider, Button, Table, Menu, } from 'antd';
+import {  Input, Tooltip, Icon, Popconfirm, Modal, Divider, Button, Table, Menu, InputNumber, Form } from 'antd';
 import './App.css';
+
+
+
+
+
+
+
+
+const data = [];
+for (let i = 0; i < 100; i++) {
+    data.push({
+        key: i.toString(),
+        name: `Edrward ${i}`,
+        age: 32,
+        address: `London Park no. ${i}`,
+    });
+}
+const EditableContext = React.createContext();
+
+
+class EditableCell extends React.Component {
+    getInput = () => {
+        if (this.props.inputType === 'number') {
+            return <InputNumber />;
+        }
+        return <Input />;
+    };
+
+    renderCell = ({ getFieldDecorator }) => {
+    const {
+        editing,
+        dataIndex,
+        title,
+        inputType,
+        record,
+        index,
+        children,
+        ...restProps
+    } = this.props;
+        return (
+            <td {...restProps}>
+                {editing ? (
+                    <Form.Item style={{ margin: 0 }}>
+                    {getFieldDecorator(dataIndex, {
+                        rules: [
+                        {
+                            required: true,
+                            message: `Please Input ${title}!`,
+                        },
+                        ],
+                        initialValue: record[dataIndex],
+                    })(this.getInput())}
+                    </Form.Item>
+                ) : (
+                    children
+                )}
+            </td>
+        );
+    };
+
+    render() {
+        return <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>;
+    }
+}
+
+
+
+
 
 export default class App extends Component {
 
     state = {
+        data,
+        editingKey: '' ,
         current: 'Todos',
         visible: false,
         columnsUsers: [
@@ -20,8 +90,11 @@ export default class App extends Component {
             },
             {
                 title: 'Action',
+                dataIndex: 'action',
                 key: 'action',
                 render: (text, record) =>
+                    const { editingKey } = this.state;
+                    const editable = this.isEditing(record);
                     this.state.dataSourceUsers.length >= 1 ? (
                         <>
                         <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
