@@ -94,3 +94,12 @@ Should start working on the editable table row
 https://ant.design/components/table/#components-table-demo-edit-row
 
 Have made the separate js file the same code from the antdesign site for reference
+
+
+SHould understand 
+
+
+As the form.create() is not understood
+
+https://ant.design/components/form/
+https://github.com/react-component/form#note-use-wrappedcomponentref-instead-of-withref-after-rc-form140
