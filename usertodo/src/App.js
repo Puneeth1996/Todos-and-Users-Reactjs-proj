@@ -162,15 +162,47 @@ class App extends Component {
                 title: 'Action',
                 dataIndex: 'action',
                 key: 'action',
-                render: (text, record) =>
-                    this.state.dataSourceTodo.length >= 1 ? (
-                        <>
-                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
-                            <a>Delete</a>
-                        </Popconfirm>
-                        <Divider type="vertical" />
-                        </>
-                    ) : null,
+                render: (text, record) => {
+                    const { editingKey } = this.state;
+                    const editable = this.isEditing(record);
+                    return (
+                    <>
+                        {this.state.dataSourceTodo.length >= 1} ? (
+                            <>
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
+                                <a>Delete</a>
+                            </Popconfirm>
+                            <Divider type="vertical" />
+                            </>
+                        ) : {null}
+
+
+                        {editable} ? (
+                        <span>
+                            <EditableContext.Consumer>
+                            {form => (
+                                <a
+                                onClick={() => this.save(form, record.key)}
+                                style={{ marginRight: 8 }}
+                                >
+                                Save
+                                </a>
+                            )}
+                            </EditableContext.Consumer>
+                            <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                            <a>Cancel</a>
+                            </Popconfirm>
+                        </span>
+                        ) : (
+                        <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+                            Edit
+                        </a>
+                        )
+
+
+                    </>
+                    )
+                },
             },
         ],
         dataSourceTodo: [            
@@ -316,7 +348,7 @@ class App extends Component {
             },
         };
     
-        const columns = this.columns.map(col => {
+        const columns = this.state.columnsTodo.map(col => {
             if (!col.editable) {
                 return col;
             }
