@@ -422,7 +422,7 @@ class App extends Component {
                     inputType: 'text',
                     dataIndex: col.dataIndex,
                     title: col.title,
-                    editing: this.isEditing(record),
+                    editing: this.isEditing1(record),
                 }),
             };
             // console.log(inputType); this throws an error => Input type not defined.
@@ -525,7 +525,7 @@ class App extends Component {
                             bordered 
                             rowClassName="editable-row" 
                             pagination={{
-                                onChange: this.cancel,
+                                onChange: this.cancel1,
                             }}
                         />
                 }
