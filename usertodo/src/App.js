@@ -367,6 +367,13 @@ class App extends Component {
             fieldVal2: '',
         });
         
+
+        // isLoading is set to true and 
+        // Now after this the normal program flow continues
+        this.setState({ isLoading: true });
+        setTimeout(() => {
+        this.setState({ isLoading: false, visible: false });
+        }, 5000);
 	};
 
 	handleCancel = e => {
@@ -502,7 +509,18 @@ class App extends Component {
                     </Menu.Item>
                 </Menu>
 				<Button onClick={this.showModal} style={{ marginBottom: 16, marginTop: 16 }} >Add {this.state.current}</Button>
-				<Modal title={"Add New "+this.state.current} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                <Modal 
+                    title={"Add New "+this.state.current} 
+                    visible={this.state.visible}
+                    footer={[
+                        <Button key="back" onClick={this.handleCancel}>
+                            Return
+                        </Button>,
+                        <Button key="submit" type="primary" loading={this.state.isLoading} onClick={this.handleOk}>
+                            Submit
+                        </Button>,
+                    ]}
+                >
                     {   
                         this.state.current === 'Todos' ?
                         <>
