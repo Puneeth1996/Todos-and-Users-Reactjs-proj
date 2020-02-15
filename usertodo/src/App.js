@@ -86,6 +86,7 @@ class App extends Component {
             ],
             fieldVal1: '',
             fieldVal2: '',
+            isLoading: false,
         };
         this.columnsTodo =  [
             {
@@ -364,7 +365,8 @@ class App extends Component {
             visible: false,
             fieldVal1: '',
             fieldVal2: '',
-		});
+        });
+        
 	};
 
 	handleCancel = e => {

@@ -116,3 +116,13 @@ https://github.com/react-component/form#note-use-wrappedcomponentref-instead-of-
 
 
 1.30 pm making the data persistance using the localstorage.
+
+
+
+2.15 pm Starting to work on the loading spinner 
+Points of action 
+->  This is done when there new insert into the dataSource
+->  WHen the Ok button is clicked in the Model 
+-> THere Should be loading spinner display 
+
+
