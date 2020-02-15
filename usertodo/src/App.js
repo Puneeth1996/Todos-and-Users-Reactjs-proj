@@ -100,7 +100,7 @@ class App extends Component {
                             {
                             this.state.dataSourceUsers.length >= 1?   
                                 <>
-                                <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
+                                <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete1(record.key)}>
                                     <a>Delete</a>
                                 </Popconfirm>
                                 <Divider type="vertical" />
