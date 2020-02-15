@@ -57,6 +57,7 @@ class App extends Component {
         super(props);
         this.state = {
             editingKey: '' ,
+            editingKey1: '' ,
             current: 'Todos',
             visible: false,
             dataSourceUsers: [
@@ -165,8 +166,8 @@ class App extends Component {
                 dataIndex: 'action',
                 key: 'action',
                 render: (text, record) => {
-                    const { editingKey } = this.state;
-                    const editable = this.isEditing(record);
+                    const { editingKey1 } = this.state;
+                    const editable = this.isEditing1(record);
                     return (
                         <>
                             {
@@ -185,19 +186,19 @@ class App extends Component {
                                 <EditableContext.Consumer>
                                 {form => (
                                     <a
-                                    onClick={() => this.save(form, record.key)}
+                                    onClick={() => this.save1(form, record.key)}
                                     style={{ marginRight: 8 }}
                                     >
                                     Save
                                     </a>
                                 )}
                                 </EditableContext.Consumer>
-                                <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                                <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel1(record.key)}>
                                 <a>Cancel</a>
                                 </Popconfirm>
                             </span>
                             : (
-                            <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+                            <a disabled={editingKey1 !== ''} onClick={() => this.edit1(record.key)}>
                                 Edit
                             </a>
                             )
@@ -247,6 +248,58 @@ class App extends Component {
         console.log(key);
         this.setState({ editingKey: key });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    isEditing1 = record => record.key === this.state.editingKey1;
+
+    cancel1 = () => {
+        this.setState({ editingKey1: '' });
+    };
+
+    save1(form, key) {
+        console.log(form, key);
+        form.validateFields((error, row) => {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        const newData = [...this.state.dataSourceUsers];
+        const index = newData.findIndex(item => key === item.key);
+        if (index > -1) {
+            const item = newData[index];
+            newData.splice(index, 1, {
+            ...item,
+            ...row,
+            });
+            this.setState({ dataSourceUsers: newData, editingKey1: '' });
+        } else {
+            newData.push(row);
+            this.setState({ dataSourceUsers: newData, editingKey1: '' });
+        }
+        });
+    }
+
+    edit1(key) {
+        console.log(key);
+        this.setState({ editingKey1: key });
+    }
+
+
+
+
+
+
+
 
 
 
@@ -336,8 +389,28 @@ class App extends Component {
                 cell: EditableCell,
             },
         };
-    
+        
+
         const columnsTodo = this.columnsTodo.map(col => {
+            // console.log(col);
+            if (!col.editable) {
+                return col;
+            }
+            return {
+                ...col,
+                onCell: record => ({
+                    record,
+                    inputType: 'text',
+                    dataIndex: col.dataIndex,
+                    title: col.title,
+                    editing: this.isEditing(record),
+                }),
+            };
+            // console.log(inputType); this throws an error => Input type not defined.
+        });
+
+
+        const columnsUsers = this.columnsUsers.map(col => {
             // console.log(col);
             if (!col.editable) {
                 return col;
@@ -434,6 +507,7 @@ class App extends Component {
                         <Table
                             components={components}
                             bordered
+                            rowKey={this.state.id} 
                             dataSource={this.state.dataSourceTodo}
                             columns={columnsTodo}
                             rowClassName={() => 'editable-row'}
@@ -442,7 +516,18 @@ class App extends Component {
                             }}
                         />
                     :
-                    <Table components={components} rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.columnsUsers} bordered rowClassName="editable-row" pagination={{onChange: this.cancel,}}/>
+                        <Table 
+                            components={components} 
+                            bordered
+                            rowKey={this.state.id} 
+                            dataSource={this.state.dataSourceUsers} 
+                            columns={columnsUsers} 
+                            bordered 
+                            rowClassName="editable-row" 
+                            pagination={{
+                                onChange: this.cancel,
+                            }}
+                        />
                 }
                 </EditableContext.Provider>
             </div>
