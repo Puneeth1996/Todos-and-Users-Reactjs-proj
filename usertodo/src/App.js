@@ -155,16 +155,21 @@ class App extends Component {
                 title: 'Name',
                 dataIndex: 'name',
                 key: 'name',
+                width: '25%',
+                editable: true,
             },
             {
                 title: 'Email',
                 dataIndex: 'email',
                 key: 'email',
+                width: '50%',
+                editable: true,
             },
             {
                 title: 'Action',
                 dataIndex: 'action',
                 key: 'action',
+                width: '25%',
                 render: (text, record) => {
                     const { editingKey1 } = this.state;
                     const editable = this.isEditing1(record);
@@ -381,6 +386,9 @@ class App extends Component {
             fieldVal2:event.target.value,
         });
     }
+
+
+
 
 
     render() {
