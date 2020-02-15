@@ -112,3 +112,7 @@ https://github.com/react-component/form#note-use-wrappedcomponentref-instead-of-
 15 Feb 2020 
 
 1.   Should correct on the actions columns rendering
+
+
+
+1.30 pm making the data persistance using the localstorage.
