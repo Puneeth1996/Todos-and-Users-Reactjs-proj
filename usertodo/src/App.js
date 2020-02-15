@@ -436,14 +436,14 @@ class App extends Component {
                         </>
                     }
                 </Modal>
-                <EditableContext.Provider value={this.props.form}>
+                
                 {   
                     this.state.current === 'Todos' ?
                     
-                    <Table components={components} rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered rowClassName="editable-row" pagination={{onChange: this.cancel,}}/> :
+                    <EditableContext.Provider value={this.props.form}><Table components={components} rowKey={this.state.id} dataSource={this.state.dataSourceTodo} columns={this.state.columnsTodo} bordered rowClassName="editable-row" pagination={{onChange: this.cancel,}}/></EditableContext.Provider> :
                     <Table components={components} rowKey={this.state.id} dataSource={this.state.dataSourceUsers} columns={this.state.columnsUsers} bordered rowClassName="editable-row" pagination={{onChange: this.cancel,}}/>
                 }
-                </EditableContext.Provider>
+                
             </div>
         )
     }
