@@ -388,8 +388,60 @@ class App extends Component {
     }
 
 
+    
+    componentWillMount() {
+        (localStorage.getItem('todoData') || localStorage.getItem('userData')) && this.setState({
+            dataSourceTodo: JSON.parse(localStorage.getItem('todoData')),
+            dataSourceUsers: JSON.parse(localStorage.getItem('userData')),
+            current: JSON.parse(localStorage.getItem('curTab')),
+        })
+    }
+    
+
+    componentDidMount(){
+
+        const date = localStorage.getItem('storringTime');
+        const storringDate = date && new Date(parseInt(date));
+        const now = new Date();
+
+        const dataAge = Math.round((now - storringDate) / (1000 * 60 * 60)); // in hours
+        const tooOld = dataAge >=4;
+
+        if(!tooOld){
+            console.log(`Using data from localStorage that are ${dataAge} hours old.`);
+        }
+        else{
+            this.setState({
+            current: 'Todos',
+            dataSourceUsers: [
+                {
+                    key: '1',
+                    name: 'Mike',
+                    email: 'Mike@gmail.com',
+                },
+            ],
+            dataSourceTodo: [            
+                {
+                    key: '1',
+                    activity: 'Should wash clothes',
+                    status: 'pending',
+                },
+            ],
+        })
+        }
+
+    }
 
 
+
+
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem('todoData', JSON.stringify(nextState.dataSourceTodo));
+        localStorage.setItem('userData', JSON.stringify(nextState.dataSourceUsers));
+        localStorage.setItem('curTab', JSON.stringify(nextState.current))
+        localStorage.setItem('storringTime', Date.now());
+    }
+    
 
     render() {
         const components = {
