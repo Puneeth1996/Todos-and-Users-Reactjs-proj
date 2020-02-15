@@ -103,3 +103,12 @@ As the form.create() is not understood
 
 https://ant.design/components/form/
 https://github.com/react-component/form#note-use-wrappedcomponentref-instead-of-withref-after-rc-form140
+
+
+
+
+
+
+15 Feb 2020 
+
+1.   Should correct on the actions columns rendering

@@ -96,42 +96,42 @@ class App extends Component {
                     const { editingKey } = this.state;
                     const editable = this.isEditing(record);
                     return (
-                    <>
-                        {this.state.dataSourceTodo.length >= 1} ? (
-                            <>
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
-                                <a>Delete</a>
-                            </Popconfirm>
-                            <Divider type="vertical" />
-                            </>
-                        ) : {null}
-
-
-                        {editable} ? (
-                        <span>
-                            <EditableContext.Consumer>
-                            {form => (
-                                <a
-                                onClick={() => this.save(form, record.key)}
-                                style={{ marginRight: 8 }}
-                                >
-                                Save
-                                </a>
-                            )}
-                            </EditableContext.Consumer>
-                            <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
-                            <a>Cancel</a>
-                            </Popconfirm>
-                        </span>
-                        ) : (
-                        <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
-                            Edit
-                        </a>
+                        <>
+                            {
+                            this.state.dataSourceTodo.length >= 1?   
+                                <>
+                                <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
+                                    <a>Delete</a>
+                                </Popconfirm>
+                                <Divider type="vertical" />
+                                </>
+                            : null 
+                            }
+                        
+                            {editable ? 
+                            <span>
+                                <EditableContext.Consumer>
+                                {form => (
+                                    <a
+                                    onClick={() => this.save(form, record.key)}
+                                    style={{ marginRight: 8 }}
+                                    >
+                                    Save
+                                    </a>
+                                )}
+                                </EditableContext.Consumer>
+                                <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                                <a>Cancel</a>
+                                </Popconfirm>
+                            </span>
+                            : (
+                            <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
+                                Edit
+                            </a>
+                            )
+                            }
+                        </>
                         )
-
-
-                    </>
-                    )
                 },
             },
         ],
@@ -167,17 +167,18 @@ class App extends Component {
                     const editable = this.isEditing(record);
                     return (
                     <>
-                        {this.state.dataSourceTodo.length >= 1} ? (
+                        {
+                        this.state.dataSourceTodo.length >= 1?   
                             <>
                             <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete2(record.key)}>
                                 <a>Delete</a>
                             </Popconfirm>
                             <Divider type="vertical" />
                             </>
-                        ) : {null}
-
-
-                        {editable} ? (
+                        : null 
+                        }
+                    
+                        {editable ? 
                         <span>
                             <EditableContext.Consumer>
                             {form => (
@@ -193,13 +194,12 @@ class App extends Component {
                             <a>Cancel</a>
                             </Popconfirm>
                         </span>
-                        ) : (
+                        : (
                         <a disabled={editingKey !== ''} onClick={() => this.edit(record.key)}>
                             Edit
                         </a>
                         )
-
-
+                        }
                     </>
                     )
                 },
